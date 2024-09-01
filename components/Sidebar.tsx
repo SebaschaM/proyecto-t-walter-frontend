@@ -36,8 +36,8 @@ export const Sidebar: React.FC<SidebarProps> = ({ onClose, isVisible }) => {
   }, [isVisible]);
 
   const handleNavigateToReminder = () => {
-    onClose(); // Cierra el sidebar
-    router.push("/(tabs)/Reminder"); // Navega a la ruta de Reminder
+    onClose();
+    router.push("/(tabs)/reminder-list");
   };
 
   return (
