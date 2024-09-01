@@ -9,8 +9,7 @@ import {
 } from "react-native";
 import { styled } from "nativewind";
 import { Ionicons } from "@expo/vector-icons";
-import { useNavigation } from "@react-navigation/native";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { useRouter } from "expo-router"; // Importa el hook useRouter
 
 const { width } = Dimensions.get("window");
 
@@ -26,6 +25,7 @@ interface SidebarProps {
 
 export const Sidebar: React.FC<SidebarProps> = ({ onClose, isVisible }) => {
   const translateX = useRef(new Animated.Value(-width)).current;
+  const router = useRouter(); // Inicializa el router
 
   useEffect(() => {
     Animated.timing(translateX, {
@@ -34,6 +34,11 @@ export const Sidebar: React.FC<SidebarProps> = ({ onClose, isVisible }) => {
       useNativeDriver: true,
     }).start();
   }, [isVisible]);
+
+  const handleNavigateToReminder = () => {
+    onClose(); // Cierra el sidebar
+    router.push("/(tabs)/Reminder"); // Navega a la ruta de Reminder
+  };
 
   return (
     <Animated.View
@@ -53,11 +58,10 @@ export const Sidebar: React.FC<SidebarProps> = ({ onClose, isVisible }) => {
           </StyledText>
         </StyledView>
 
-        {/* Opciones del menú */}
         <StyledView className="p-5">
           <StyledTouchableOpacity
             className="flex-row items-center mb-5"
-            //onPress={handleNavigateToCalendar} // Llama a la función para navegar
+            onPress={handleNavigateToReminder} // Llama a la función para navegar
           >
             <Ionicons name="calendar" size={24} color="gray" />
             <StyledText className="ml-4 text-lg text-gray-800">

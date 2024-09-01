@@ -11,7 +11,7 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({ onMenuPress }) => {
   return (
-    <StyledView className="flex-row mb-2 items-center justify-between p-4 bg-white border-b border-gray-300">
+    <StyledView className="flex-row items-center justify-between p-2 mb-2 bg-white border-b border-gray-300">
       <TouchableOpacity onPress={onMenuPress} className="p-2">
         <Ionicons name="menu" size={24} color="black" />
       </TouchableOpacity>
